@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Category } from "../category";
 import { CategoryService } from '../category.service';
 
@@ -12,6 +12,7 @@ export class CategoryComponent implements OnInit {
   categories: Category[];
   parentCategories: Category[];
   response : any;
+  @Input() selectedCategory : Category;
 
   constructor(private categoryService:CategoryService) { }
 
@@ -33,4 +34,8 @@ export class CategoryComponent implements OnInit {
       console.log(this.parentCategories);
     }); 
   }
+
+  // selectValue() {
+  //   this.selectedCategory = 
+  // }
 }
