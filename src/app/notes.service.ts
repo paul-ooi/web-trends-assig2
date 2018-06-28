@@ -1,41 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Note } from './note';
 import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotesService {
-  notes : Note[] = [
-    {
-      id : 1,
-      title : 'note1',
-      dateCreate : new Date('2018/6/8'),
-      body : 'note1 body',
-      archived : false,
-      categoryRef : 1
-    },
-    {
-      id : 2,
-      title : 'note2',
-      dateCreate : new Date('2018/6/9'),
-      body : 'note2 body',
-      archived : false,
-      categoryRef : 2
-    },
-    {
-      id : 3,
-      title : 'note3',
-      dateCreate : new Date('2018/6/9'),
-      body : 'note3 body',
-      archived : false,
-      categoryRef : 1
-    },
-  ];
-
+  url = 'http://api.paulooidesign.ca/notes.php?api_key=python&user=Diego';
+  
   getNotes() : Observable<Note[]> {
-    return of (this.notes);
+    return this.httpClient.get<Note[]>(this.url)
+    // return of (this.notes);
   }
   
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 }

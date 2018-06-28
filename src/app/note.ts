@@ -1,8 +1,8 @@
 export class Note {
     id : number;
     title : string;
-    dateCreate : Date;
+    date_created : Date;
     body : string;
     archived : boolean;
-    categoryRef: number;
+    category_ref: number;
 }

@@ -1,3 +1,7 @@
 ul.results {
     list-style: none;
 }
+.category, .date_created{
+    font-size: 16px;
+    color: #666;
+}

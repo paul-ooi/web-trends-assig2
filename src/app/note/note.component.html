@@ -1,0 +1,8 @@
+<h2>{{ note.title }}</h2>
+<p>{{ note.body }}</p>
+<div class="category">
+  category: {{ note.category_ref }}
+</div>
+<div class="date_created">
+  {{ note.date_created | date: 'MM/dd/yyyy' }}
+</div>

@@ -1,12 +1,5 @@
 <ul class="results">
   <li *ngFor="let n of notes">
-    <h2>{{ n.title }}</h2>
-    <p>{{ n.body }}</p>
-    <div class="category">
-      {{ n.categoryRef }}
-    </div>
-    <div>
-      {{ n.dateCreate | date: 'MM/dd/yyyy' }}
-    </div>
+    <app-note [note]="n"></app-note>
   </li>
 </ul>
