@@ -9,12 +9,28 @@ import { CategoryService } from '../category.service';
 })
 export class CategoryComponent implements OnInit {
 
-  categories:Category[];
+  categories: Category[];
+  parentCategories: Category[];
+  response : any;
 
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(data=>this.categories = data);
+    this.getCategories();
+    this.getParentCategories();
+  }
+  
+  getCategories() {
+    this.categoryService.getCategories().subscribe(data=>{
+      this.categories = data;
+      console.log(this.categories);
+    });    
   }
 
+  getParentCategories() {
+    this.categoryService.getParentCategories().subscribe(data => {
+      this.parentCategories = data;
+      console.log(this.parentCategories);
+    }); 
+  }
 }
