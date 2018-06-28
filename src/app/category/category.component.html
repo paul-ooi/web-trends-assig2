@@ -1,6 +1,15 @@
-<select>
-  <option *ngFor="let category of categories" id="{{category.id}}">
-    <span *ngIf="category.parent">{{category.parent.name}} - </span>
-    {{category.name}}
-  </option>
+<select ng-change="selectValue()">
+  <option>Select Category</option>
+  <ng-container *ngFor="let parent of parentCategories.values">
+      <optgroup label="{{ parent.category | titlecase }}">
+        <ng-container *ngFor="let cat of categories.values">
+          <option *ngIf="cat.parent == parent.category">
+            {{ cat.category | titlecase }}
+          </option>
+        </ng-container>        
+      </optgroup>
+  </ng-container>
 </select>
+<div *ngIf="selectedCategory">
+
+</div>

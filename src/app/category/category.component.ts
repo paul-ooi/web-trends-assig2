@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Category } from "../category";
 import { CategoryService } from '../category.service';
 
@@ -9,12 +9,33 @@ import { CategoryService } from '../category.service';
 })
 export class CategoryComponent implements OnInit {
 
-  categories:Category[];
+  categories: Category[];
+  parentCategories: Category[];
+  response : any;
+  @Input() selectedCategory : Category;
 
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(data=>this.categories = data);
+    this.getCategories();
+    this.getParentCategories();
+  }
+  
+  getCategories() {
+    this.categoryService.getCategories().subscribe(data=>{
+      this.categories = data;
+      console.log(this.categories);
+    });    
   }
 
+  getParentCategories() {
+    this.categoryService.getParentCategories().subscribe(data => {
+      this.parentCategories = data;
+      console.log(this.parentCategories);
+    }); 
+  }
+
+  // selectValue() {
+  //   this.selectedCategory = 
+  // }
 }
