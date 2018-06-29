@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ErrorHandler } from '@angular/core';
 import { Category } from "../category";
 import { CategoryService } from '../category.service';
 
@@ -24,16 +24,21 @@ export class CategoryComponent implements OnInit {
   }
   
   getCategories() : void {
-    this.categoryService.getCategories().subscribe(data=>{
+    this.categoryService.getCategories().subscribe(
+      (data)=>{
       this.categories = data;
       console.log(this.categories);
     },
     error =>{
       // console.log(error.message);
       // console.log(error.response);
-      this.error = error.name + ": " + error.statusText
-      console.log(error);
-    });    
+      console.log('inside error');
+      // this.error = error;
+      // console.log(error);
+    },
+  ()=>{
+    console.log('inside complete')
+  });    
   }
 
   getParentCategories() :void {

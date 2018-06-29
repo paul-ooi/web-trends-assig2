@@ -29,4 +29,7 @@
     <h3>Created Date:</h3> <span class="details">{{ selectedCategory.values[0].date_created | date : fullDate}}</span>
   </div>
 </div>
-<div *ngIf="error"></div>
+<div *ngIf="error">
+  {{ error.message }}
+  {{ error.status }}
+</div>

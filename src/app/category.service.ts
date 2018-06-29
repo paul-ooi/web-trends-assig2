@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 import { Category } from './category';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -12,7 +12,7 @@ export class CategoryService {
   dbUrl = 'https://simple-api-web.herokuapp.com?api-key=maiAPIke';
 
 
-  private errorHandler(error : HttpErrorResponse) {
+  private errorHandler(error : HttpErrorResponse)  {
   if(error.error instanceof ErrorEvent) {
     console.error('An error occurred:', error.error.message);
     throwError(error.error.message)
@@ -23,6 +23,9 @@ export class CategoryService {
     }else if (error.status == 401) {
       console.error(error.status);
       console.error(error.statusText);
+      console.error(error.error.message);
+      console.error(error.error.response);      
+      console.error('inside 401');      
       // return throwError('something went wrong');
       // this.router.navigateByUrl('/error');
     } else if (error.status == 404) {
@@ -34,7 +37,7 @@ export class CategoryService {
       console.error("Server Error (" + error.status + "): " + error.statusText);
     }
   }
-  return throwError('something went wrong');
+  // return throwError('something went wrong');
 }
   getCategories():Observable<Category[]>{
     return this.http.get<Category[]>(
