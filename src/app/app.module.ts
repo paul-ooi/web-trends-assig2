@@ -8,6 +8,7 @@ import { NoteslistComponent } from './noteslist/noteslist.component';
 import { NoteComponent } from './note/note.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { HomeComponent } from './home/home.component';
     CategoryComponent,
     NoteslistComponent,
     NoteComponent,
-    HomeComponent
+    HomeComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

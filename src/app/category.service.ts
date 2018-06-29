@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Category } from './category';
 import { Observable, of} from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-
+private errorHandler(error : HttpErrorResponse) {
+  if (error.status == 401) {
+    //Redirect to the URL
+  }
+}
   getCategories():Observable<Category[]>{
     return this.http.get<Category[]>(
       'https://simple-api-web.herokuapp.com/',
