@@ -52,6 +52,19 @@ private errorHandler(error : HttpErrorResponse) {
       }
     )
   } 
+  getCategory(search:string, column:string){
+    return this.http.get<Category[]>(
+      'https://simple-api-web.herokuapp.com/',
+      {
+        params: {
+          'api-key': 'maiAPIkey',
+          'search': search.toLowerCase().trim(),
+          'column': column
+        },
+        responseType: 'json'
+      }
+    )
+  }
   constructor( 
     private http : HttpClient 
   ) {  }
