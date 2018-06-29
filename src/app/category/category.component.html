@@ -1,15 +1,17 @@
-<select (change)="selectValue()" id="category">
-  <option disabled>- Select Category -</option>
-  <ng-container *ngFor="let parent of parentCategories.values">
-      <optgroup label="{{ parent.category | titlecase }}">
-        <ng-container *ngFor="let cat of categories.values">
-          <option *ngIf="cat.parent == parent.category" value="{{ cat.id }}">
-            {{ cat.category | titlecase }}
-          </option>
-        </ng-container>        
-      </optgroup>
-  </ng-container>
-</select>
+<form name="topics">
+  <select (change)="selectValue()" id="category">
+    <option disabled>- Select Category -</option>
+    <ng-container *ngFor="let parent of parentCategories.values">
+        <optgroup label="{{ parent.category | titlecase }}">
+          <ng-container *ngFor="let cat of categories.values">
+            <option *ngIf="cat.parent == parent.category" value="{{ cat.id }}">
+              {{ cat.category | titlecase }}
+            </option>
+          </ng-container>        
+        </optgroup>
+    </ng-container>
+  </select>
+</form>
 <div *ngIf="selectedCategory" id="selectedCategory">
   <div>
     <h2>Category Name:</h2><span class="details">{{ selectedCategory.values[0].category  | titlecase  }} (ID#: {{ selectedCategory.values[0].id }})</span>
