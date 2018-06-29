@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
   categories: Category[];
   parentCategories: Category[];
   response : any;
-  @Input() selectedCategory : Category;
+  selectedCategory : Category;
 
   constructor(private categoryService:CategoryService) { }
 
@@ -35,7 +35,12 @@ export class CategoryComponent implements OnInit {
     }); 
   }
 
-  // selectValue() {
-  //   this.selectedCategory = 
-  // }
+  selectValue() {
+    let selected = document.querySelector('#category option:checked').textContent;
+    console.log(selected);
+    this.categoryService.getSelectedCategory(selected).subscribe(data => {
+      this.selectedCategory = data
+      console.log(this.selectedCategory);
+    } );
+  }
 }

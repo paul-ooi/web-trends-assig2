@@ -33,6 +33,20 @@ export class CategoryService {
       }
     )
   }
+
+  getSelectedCategory(category:string) {
+    return this.http.get<Category>(
+      'https://simple-api-web.herokuapp.com/',
+      {
+        params: {
+          'api-key': 'maiAPIkey',
+          'search': category.toLowerCase().trim(),
+          'column': 'category'
+        },
+        responseType: 'json'
+      }
+    )
+  } 
   constructor( 
     private http : HttpClient 
   ) {  }
