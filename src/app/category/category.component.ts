@@ -14,6 +14,8 @@ export class CategoryComponent implements OnInit {
   response : any;
   selectedCategory : Category;
 
+  error : any;
+
   constructor(private categoryService:CategoryService) { }
 
   ngOnInit() {
@@ -21,21 +23,27 @@ export class CategoryComponent implements OnInit {
     this.getParentCategories();
   }
   
-  getCategories() {
+  getCategories() : void {
     this.categoryService.getCategories().subscribe(data=>{
       this.categories = data;
       console.log(this.categories);
+    },
+    error =>{
+      // console.log(error.message);
+      // console.log(error.response);
+      this.error = error.name + ": " + error.statusText
+      console.log(error);
     });    
   }
 
-  getParentCategories() {
+  getParentCategories() :void {
     this.categoryService.getParentCategories().subscribe(data => {
       this.parentCategories = data;
       console.log(this.parentCategories);
     }); 
   }
 
-  selectValue() {
+  selectValue() :void {
     let selected = document.querySelector('#category option:checked').textContent;
     console.log(selected);
     this.categoryService.getSelectedCategory(selected).subscribe(data => {

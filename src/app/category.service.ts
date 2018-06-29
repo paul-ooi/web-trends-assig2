@@ -4,14 +4,15 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ErrorsService } from './errors.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
+  dbUrl = 'https://simple-api-web.herokuapp.com?api-key=maiAPIke';
 
-private errorHandler(error : HttpErrorResponse) {
+
+  private errorHandler(error : HttpErrorResponse) {
   if(error.error instanceof ErrorEvent) {
     console.error('An error occurred:', error.error.message);
     throwError(error.error.message)
@@ -22,12 +23,12 @@ private errorHandler(error : HttpErrorResponse) {
     }else if (error.status == 401) {
       console.error(error.status);
       console.error(error.statusText);
-      this.errors.setErrCode(error.status.valueOf());
-      this.errors.setErrMsg(error.statusText.toString());
-      this.router.navigateByUrl('/error');
+      // return throwError('something went wrong');
+      // this.router.navigateByUrl('/error');
     } else if (error.status == 404) {
       console.error(error.status);
       console.error(error.error.text);
+      // this.router.navigateByUrl('/error');
       // throwError(404);
     } else {
       console.error("Server Error (" + error.status + "): " + error.statusText);
@@ -37,12 +38,9 @@ private errorHandler(error : HttpErrorResponse) {
 }
   getCategories():Observable<Category[]>{
     return this.http.get<Category[]>(
-      'https://simple-api-web.herokuapp.com/',
+      this.dbUrl,
       {
-        params: {
-          'api-key' : 'maiAPIke'
-        },
-        responseType : 'json'
+       responseType : 'json'
       }
     ).pipe (
       catchError(this.errorHandler)
@@ -51,10 +49,9 @@ private errorHandler(error : HttpErrorResponse) {
   
   getParentCategories() : Observable<Category[]> {
     return this.http.get<Category[]>(
-      'https://simple-api-web.herokuapp.com/',
+      this.dbUrl,
       {
         params: {
-          'api-key': 'maiAPIkey',
           'search' : 'all',
           'column' : 'parent'
         },
@@ -65,10 +62,9 @@ private errorHandler(error : HttpErrorResponse) {
 
   getSelectedCategory(category:string) {
     return this.http.get<Category>(
-      'https://simple-api-web.herokuapp.com/',
+      this.dbUrl,
       {
         params: {
-          'api-key': 'maiAPIkey',
           'search': category.toLowerCase().trim(),
           'column': 'category'
         },
@@ -78,9 +74,5 @@ private errorHandler(error : HttpErrorResponse) {
   } 
   constructor( 
     private http : HttpClient ,
-    private router : Router,
-    // private route: ActivatedRoute,
-    // private header : HttpHeaders,
-    private errors : ErrorsService,
   ) {  }
 }

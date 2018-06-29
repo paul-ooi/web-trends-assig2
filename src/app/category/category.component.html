@@ -1,14 +1,20 @@
 <form name="topics">
   <select (change)="selectValue()" id="category">
     <option disabled>- Select Category -</option>
-    <ng-container *ngFor="let parent of parentCategories.values">
+    <ng-container *ngIf="parentCategories">
+      <ng-container *ngFor="let parent of parentCategories.values">
         <optgroup label="{{ parent.category | titlecase }}">
-          <ng-container *ngFor="let cat of categories.values">
-            <option *ngIf="cat.parent == parent.category" value="{{ cat.id }}">
-              {{ cat.category | titlecase }}
-            </option>
+          <ng-container *ngIf="categories">
+            <ng-container *ngFor="let cat of categories.values">
+              <ng-container *ngIf="cat.parent == parent.category">
+                <option value="{{ cat.id }}">
+                  {{ cat.category | titlecase }}
+                </option>
+              </ng-container>
+            </ng-container>        
           </ng-container>        
         </optgroup>
+      </ng-container>
     </ng-container>
   </select>
 </form>
@@ -23,3 +29,4 @@
     <h3>Created Date:</h3> <span class="details">{{ selectedCategory.values[0].date_created | date : fullDate}}</span>
   </div>
 </div>
+<div *ngIf="error"></div>
