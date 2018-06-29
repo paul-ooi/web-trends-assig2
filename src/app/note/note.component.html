@@ -1,8 +1,12 @@
-<h2>{{ note.title }}</h2>
-<p>{{ note.body }}</p>
-<div class="category">
-  category: {{ note.category_ref }}
-</div>
-<div class="date_created">
-  {{ note.date_created | date: 'MM/dd/yyyy' }}
+<div *ngIf="note">
+
+  <h2 style="margin-bottom: 0px">{{ note.title }}</h2>
+  <p style="margin-top: 2px">note#: {{ note.id }}</p>
+  <p>{{ note.body }}</p>
+  <div class="category">
+    category: {{ note.category_ref }}
+  </div>
+  <div class="date_created">
+    {{ note.date_created | date: 'MM/dd/yyyy' }}
+  </div>
 </div>
