@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NotesService } from '../notes.service';
 import { Note } from '../note';
 import { CategoryService } from '../category.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-note',
@@ -14,7 +15,7 @@ export class NoteComponent implements OnInit {
   note:Note;
   name: string;
   error: string;
-  categoryName: string;
+  categoryName: Category;
 
   getName(): void {
     this.name = this.route.snapshot.paramMap.get('name');
@@ -36,9 +37,9 @@ export class NoteComponent implements OnInit {
     this.notesService.getNotes(name).subscribe(data => {
       console.log(data)
       this.note = data[0]
-      this.categoryService.getCategories().subscribe(data2 => {
-        this.categoryName = data2[0].name
-        console.log(data2)
+      this.categoryService.getCategory(this.note.category_ref+'','id').subscribe(data2 => {
+        console.log(data2.values[0])
+        this.categoryName = data2.values[0]
       })
     },
       error=>{

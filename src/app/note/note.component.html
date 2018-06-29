@@ -10,7 +10,7 @@
       {{ note.date_created | date: 'fullDate' }}
     </div>
     <div style="font-style: italic; color:#777" class="category">
-        category: {{ note.category_ref }}
+        category: <span *ngIf="!categoryName">{{ note.category_ref }} </span><span *ngIf="categoryName">{{categoryName.category}}</span>
     </div>
   </div>
 </div>
