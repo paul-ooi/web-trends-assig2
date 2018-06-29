@@ -30,22 +30,18 @@ export class CategoryComponent implements OnInit {
       console.log(this.categories);
     },
     error =>{
-      // console.log(error.message);
-      // console.log(error.response);
-      console.log('inside error');
-      // this.error = error;
-      // console.log(error);
-    },
-  ()=>{
-    console.log('inside complete')
-  });    
+      this.error = error;
+    })   
   }
 
   getParentCategories() :void {
     this.categoryService.getParentCategories().subscribe(data => {
       this.parentCategories = data;
       console.log(this.parentCategories);
-    }); 
+    },
+      error => {
+        this.error = error;
+      }); 
   }
 
   selectValue() :void {
@@ -54,6 +50,9 @@ export class CategoryComponent implements OnInit {
     this.categoryService.getSelectedCategory(selected).subscribe(data => {
       this.selectedCategory = data
       console.log(this.selectedCategory);
-    } );
+    },     
+    error => {
+      this.error = error;
+    }) ;
   }
 }

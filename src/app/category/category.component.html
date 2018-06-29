@@ -1,3 +1,9 @@
+<div *ngIf="error" class="error_msg">
+  Error: {{ error.status }} {{ error.name }} {{ error.statusText }}
+  <span>
+    {{ error.error.response }} - {{ error.error.message }}
+  </span>
+</div>
 <form name="topics">
   <select (change)="selectValue()" id="category">
     <option disabled>- Select Category -</option>
@@ -28,8 +34,4 @@
   <div>
     <h3>Created Date:</h3> <span class="details">{{ selectedCategory.values[0].date_created | date : fullDate}}</span>
   </div>
-</div>
-<div *ngIf="error">
-  {{ error.message }}
-  {{ error.status }}
 </div>
