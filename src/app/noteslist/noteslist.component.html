@@ -1,4 +1,5 @@
 <ul class="results">
+  <h2 *ngIf="notes"># of notes: {{notes.length}}</h2>
   <li *ngFor="let n of notes">
     <a routerLink="/notes/{{ n.title }}">{{ n.title }}</a>
     <!-- <app-note [note]="n"></app-note> -->
