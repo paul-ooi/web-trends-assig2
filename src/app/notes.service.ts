@@ -12,10 +12,11 @@ export class NotesService {
   getNotes(name?: string) : Observable<Note[]> {
     let url_final:string = this.url;
     if(name){
-      url_final += url_final+"&title="+name;    
+      url_final += url_final + "&title=" + name;
       console.log(url_final);
     }
-    return this.httpClient.get<Note[]>(url_final)
+    return this.httpClient.get<Note[]>(url_final);
+    
     // return of (this.notes);
   }
   

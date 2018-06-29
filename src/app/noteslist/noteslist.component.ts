@@ -11,11 +11,26 @@ import { NotesService } from '../notes.service';
 
 export class NoteslistComponent implements OnInit {
   notes : Note[];
+  error : string;
 
   constructor(private noteList : NotesService) { }
 
+  get_filtered(search: string){
+    this.noteList.getNotes(search).subscribe(results => this.notes = results, 
+      error => {
+        this.error = error.name + ": " + error.statusText
+        console.log(error);
+      }
+    );
+  }
+
   ngOnInit() {
-    this.noteList.getNotes().subscribe(results => this.notes = results);
+    this.noteList.getNotes().subscribe(results => this.notes = results, 
+      error => {
+        this.error = error.name + ": " + error.statusText
+        console.log(error);
+      }
+    );
   }
 
 
