@@ -7,7 +7,12 @@
     <title>Your own Wiki Notes</title>
   </head>
   <body>
-      <app-category></app-category>
-      <app-noteslist></app-noteslist>
+      <nav>
+          <a style="text-decoration: none;" routerLink="">Notes |</a>
+          <a style="text-decoration: none;" routerLink="/about"> Categories</a>
+      </nav>
+      <router-outlet></router-outlet>
+      <!-- <app-category></app-category> -->
+      <!-- <app-noteslist></app-noteslist> -->
   </body>
 </html>

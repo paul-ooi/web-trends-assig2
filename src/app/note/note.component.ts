@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Note} from '../note';
+import { ActivatedRoute } from '@angular/router';
+import { NotesService } from '../notes.service';
+import { Note } from '../note';
 
 @Component({
   selector: 'app-note',
@@ -7,12 +9,32 @@ import {Note} from '../note';
   styleUrls: ['./note.component.css']
 })
 export class NoteComponent implements OnInit {
-  @Input() 
+  
   note:Note;
 
-  constructor() { }
+  name: string;
+
+  getName(): void {
+    this.name = this.route.snapshot.paramMap.get('name');
+    console.log(this.name)
+  }
+
+  constructor(
+    private route: ActivatedRoute,
+    private notesService: NotesService
+  ) { }
 
   ngOnInit() {
+    // this.getNum();
+    const name = this.route.snapshot.paramMap.get('name');
+    console.log(name)
+
+    //call the service 
+    this.notesService.getNotes(name).subscribe(data => {
+      console.log(data)
+        this.note = data[0]
+      }
+    );
   }
 
 }

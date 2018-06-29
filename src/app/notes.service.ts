@@ -9,8 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class NotesService {
   url = 'http://api.paulooidesign.ca/notes.php?api_key=python&user=Diego';
   
-  getNotes() : Observable<Note[]> {
-    return this.httpClient.get<Note[]>(this.url)
+  getNotes(name?: string) : Observable<Note[]> {
+    let url_final:string = this.url;
+    if(name){
+      url_final += url_final+"&title="+name;    
+      console.log(url_final);
+    }
+    return this.httpClient.get<Note[]>(url_final)
     // return of (this.notes);
   }
   

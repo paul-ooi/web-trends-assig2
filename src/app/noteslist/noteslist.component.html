@@ -1,5 +1,6 @@
 <ul class="results">
   <li *ngFor="let n of notes">
-    <app-note [note]="n"></app-note>
+    <a routerLink="/notes/{{ n.title }}">{{ n.title }}</a>
+    <!-- <app-note [note]="n"></app-note> -->
   </li>
 </ul>
