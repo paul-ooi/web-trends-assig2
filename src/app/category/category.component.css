@@ -1,0 +1,10 @@
+#selectedCategory > div {
+    display: flex;
+    align-items: center;
+}
+
+.details {
+    font-weight: 700;
+    color: rgb(192, 67, 45);
+    margin-left: 1em;
+}
