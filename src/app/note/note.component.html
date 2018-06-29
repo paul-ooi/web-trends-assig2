@@ -1,12 +1,16 @@
 <p *ngIf="error">{{ error }}</p>
 <div *ngIf="note">
-  <h2 style="margin-bottom: 0px">{{ note.title }}</h2>
-  <p style="margin-top: 2px">note#: {{ note.id }}</p>
-  <p>{{ note.body }}</p>
-  <div class="category">
-    category: {{ note.category_ref }}
-  </div>
-  <div class="date_created">
-    {{ note.date_created | date: 'MM/dd/yyyy' }}
+  <div style="padding-left: 15px; padding-right: 15px">
+    <h2 style="margin-bottom: 0px; color:teal">{{ note.title }}</h2>
+
+    <p style="margin-top: 2px; color:#777">note#: {{ note.id }}</p>
+    <p style="line-height: 24px">{{ note.body }}</p>
+    
+    <div class="date_created">
+      {{ note.date_created | date: 'fullDate' }}
+    </div>
+    <div style="font-style: italic; color:#777" class="category">
+        category: <span *ngIf="!categoryName">{{ note.category_ref }} </span><span *ngIf="categoryName">{{categoryName.category}}</span>
+    </div>
   </div>
 </div>
