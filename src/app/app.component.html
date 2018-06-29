@@ -8,8 +8,11 @@
   </head>
   <body>
       <nav>
-          <a style="text-decoration: none;" routerLink="">Notes |</a>
-          <a style="text-decoration: none;" routerLink="/about"> Categories</a>
+        <ul>
+          <li class="menu-item"><a style="text-decoration: none;" routerLink="/">Home </a></li>|
+          <li class="menu-item"><a style="text-decoration: none;" routerLink="/notes">Notes </a></li>|
+          <li class="menu-item"><a style="text-decoration: none;" routerLink="/categories"> Categories</a></li>
+        </ul>
       </nav>
       <router-outlet></router-outlet>
       <!-- <app-category></app-category> -->

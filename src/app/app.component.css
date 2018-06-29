@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Cousine:400,700');
+
+body {
+    font-family: 'Cousine', 'Courier New', Courier, monospace;
+}
+
+nav > ul {
+    display: flex;
+    padding-left: 0;
+}
+.menu-item::after(not:last-child) {
+    content: '|';
+}
+
+.menu-item {
+    list-style: none;
+    margin: 0 0.5em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.menu-item:hover {
+    text-decoration: underline
+}
